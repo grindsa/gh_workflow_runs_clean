@@ -2,7 +2,7 @@
 
 name: Github Action Clean
 on:
-  push:  
+  push:
   schedule:
     # * is a special character in YAML so you have to quote this string
     - cron:  '0 2 * * 6'
@@ -21,3 +21,9 @@ jobs:
     - name: check a2c
       run: |
         python3 ./github_actions_clean.py -d  -r grindsa/acme2certifier -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }}  -c 2
+    - name: check est_proxy
+      run: |
+        python3 ./github_actions_clean.py -d  -r grindsa/est_proxy -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }}  -c 2
+    - name: check dkb-robo
+      run: |
+        python3 ./github_actions_clean.py -d  -r grindsa/dkb-robo -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }}  -c 2        
