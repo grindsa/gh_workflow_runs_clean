@@ -1,13 +1,13 @@
 #!/usr/bin/python3
 """ github action log cleaner """
 import argparse
-import requests
+import sys
 import math
 import calendar
-from dateutil.parser import parse
-import sys
 import json
 from datetime import datetime
+from dateutil.parser import parse
+import requests
 
 def arg_parse():
     """ simple argparser """
@@ -59,7 +59,7 @@ def actionslist_get(debug, auth, reponame):
 
     pagenum = 0
     if 'total_count' in resp.json():
-        pagenum =  math.ceil(resp.json()['total_count']/perpage)
+        pagenum = math.ceil(resp.json()['total_count']/perpage)
         print_debug(debug, 'totalcount: {0}, perpage: {1}, pages: {2}'.format(resp.json()['total_count'], perpage, pagenum))
 
     workflow_list = []
@@ -71,7 +71,7 @@ def actionslist_get(debug, auth, reponame):
             if 'workflow_runs' in resp.json():
                 workflow_list.extend(resp.json()['workflow_runs'])
 
-    json_store('foo.json', workflow_list)
+    # json_store('ids.json', workflow_list)
     return workflow_list
 
 def actionlist_group(debug, action_list):
@@ -124,19 +124,18 @@ def idlist_filter(debug, action_dic, branch_list, commit_number):
                 # skip latest n commits
                 delete = True
             # print_debug(debug, '{0}, {1}, {2}, {3}'.format(branch, timestamp, idx, delete))
-            for id in action_dic[branch][timestamp]['id_list']:
+            for id_ in action_dic[branch][timestamp]['id_list']:
                 if delete:
-                    id_list.append(id)
+                    id_list.append(id_)
     return id_list
 
 def idlist_delete(debug, auth, reponame, id_list):
     """ delete worflow logs """
     print_debug(debug, 'idlist_delete({0})'.format(len(id_list)))
-    for id in id_list:
-        print_debug(debug, 'delete id: {0}'.format(id))
-        url = 'https://api.github.com/repos/{0}/actions/runs/{1}'.format(reponame, id)
+    for id_ in id_list:
+        print_debug(debug, 'delete id: {0}'.format(id_))
+        url = 'https://api.github.com/repos/{0}/actions/runs/{1}'.format(reponame, id_)
         resp = requests.delete(url=url, auth=auth)
-        print(resp.text)
 
 if __name__ == '__main__':
 
@@ -146,7 +145,7 @@ if __name__ == '__main__':
         BRANCH_LIST = branchlist_get(DEBUG, AUTH, REPONAME)
     # print(BRANCH_LIST)
     if BRANCH_LIST:
-        ACTION_LIST =  actionslist_get(DEBUG, AUTH, REPONAME)
+        ACTION_LIST = actionslist_get(DEBUG, AUTH, REPONAME)
     # ACTION_LIST = json_load('foo.json')
 
     # group actions per branch
