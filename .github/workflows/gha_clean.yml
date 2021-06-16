@@ -1,6 +1,6 @@
-# workflow to clean github actions for my repositories
+# workflow to clean github workflow runs for my repositories
 
-name: Github Action Clean
+name: Github WF Runs Clean
 on:
   push:
   schedule:
@@ -10,7 +10,7 @@ on:
 jobs:
   gha_clean:
     runs-on: ubuntu-latest
-    name: Github Action Clean
+    name: Github WF Runs Clean
     steps:
     - uses: actions/checkout@v2
     - name: Install dependencies
@@ -18,12 +18,15 @@ jobs:
         python -m pip install --upgrade pip
         pip install pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: check self
+      run: |
+        python3 ./gh_workflow_runs_delete.py -d  -r grindsa/github_actions_clean -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }}  -c 2
     - name: check a2c
       run: |
-        python3 ./github_actions_clean.py -d  -r grindsa/acme2certifier -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }}  -c 2
+        python3 ./gh_workflow_runs_delete.py -d  -r grindsa/acme2certifier -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }}  -c 2
     - name: check est_proxy
       run: |
-        python3 ./github_actions_clean.py -d  -r grindsa/est_proxy -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }}  -c 2
+        python3 ./gh_workflow_runs_delete.py -d  -r grindsa/est_proxy -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }}  -c 2
     - name: check dkb-robo
       run: |
-        python3 ./github_actions_clean.py -d  -r grindsa/dkb-robo -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }}  -c 2        
+        python3 ./gh_workflow_runs_delete.py -d  -r grindsa/dkb-robo -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }}  -c 2

@@ -11,7 +11,7 @@ import requests
 
 def arg_parse():
     """ simple argparser """
-    parser = argparse.ArgumentParser(description='github_actions_clean.py - clean github action logs and artifacts')
+    parser = argparse.ArgumentParser(description='gh_workflow_runs_delete.py - delete github action logs and artifacts')
     parser.add_argument('-d', '--debug', help='debug mode', action="store_true", default=False)
     parser.add_argument('-r', '--reponame', help='repositoryname', default=None)
     parser.add_argument('-u', '--username', help='username', default=None)
@@ -50,9 +50,9 @@ def branchlist_get(debug, auth, reponame):
 
     return branch_list
 
-def actionslist_get(debug, auth, reponame):
+def wfruns_get(debug, auth, reponame):
     """ get list of runs """
-    print_debug(debug, 'actionslist_get()')
+    print_debug(debug, 'wfruns_get()')
     perpage = 100
     url = 'https://api.github.com/repos/{0}/actions/runs?per_page={1}'.format(reponame, perpage)
     resp = requests.get(url=url, auth=auth)
@@ -74,9 +74,9 @@ def actionslist_get(debug, auth, reponame):
     # json_store('ids.json', workflow_list)
     return workflow_list
 
-def actionlist_group(debug, action_list):
+def wfruns_group(debug, action_list):
     """ group action list by branch """
-    print_debug(debug, 'actionlist_group()')
+    print_debug(debug, 'wfruns_group()')
     actions_dic = {}
     for workflow in action_list:
         if 'head_branch' in workflow and 'head_sha' in workflow and 'head_commit' in workflow and 'id' in workflow:
@@ -145,11 +145,11 @@ if __name__ == '__main__':
         BRANCH_LIST = branchlist_get(DEBUG, AUTH, REPONAME)
     # print(BRANCH_LIST)
     if BRANCH_LIST:
-        ACTION_LIST = actionslist_get(DEBUG, AUTH, REPONAME)
+        ACTION_LIST = wfruns_get(DEBUG, AUTH, REPONAME)
     # ACTION_LIST = json_load('foo.json')
 
     # group actions per branch
-    ACTION_DIC = actionlist_group(DEBUG, ACTION_LIST)
+    ACTION_DIC = wfruns_group(DEBUG, ACTION_LIST)
 
     # select ids to be deleted
     ID_LIST = idlist_filter(DEBUG, ACTION_DIC, BRANCH_LIST, COMMIT_NUMBER)
