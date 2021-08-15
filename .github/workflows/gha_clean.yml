@@ -20,7 +20,7 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: check self
       run: |
-        python3 ./gh_workflow_runs_delete.py -d  -r grindsa/github_actions_clean -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }}  -c 2
+        python3 ./gh_workflow_runs_delete.py -d  -r grindsa/github_actions_clean -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }}
     - name: check a2c
       run: |
         python3 ./gh_workflow_runs_delete.py -d  -r grindsa/acme2certifier -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }}  -c 2
