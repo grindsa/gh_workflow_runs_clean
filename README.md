@@ -5,7 +5,7 @@
 
 It uses the [WorkFlow Runs API](https://docs.github.com/en/rest/reference/actions#workflow-runs) allowing `delete` operations by using the `/repos/{owner}/{repo}/actions/runs` endpoint.
 
-By default the script scans a repository to get a list of branches and deletes all workflow runs except the ones belonging ot that latest commit per branch. The list of branches as well as the amount of commits to be kept can be adjusted.
+By default the script scans a repository to get a list of branches and deletes all workflow runs except the ones belonging to that latest commit per branch. The list of branches as well as the amount of commits to be kept can be adjusted.
 
 ## pre-requisite
 
@@ -92,7 +92,7 @@ jobs:
     - name: check dkb-robo
       run: |
         python3 ./gh_workflow_runs_delete.py -d  -r grindsa/dkb-robo -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }}  -c 2
-        
+
 ```
 
 ## Contributing
