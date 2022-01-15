@@ -5,7 +5,7 @@
 
 It uses the [WorkFlow Runs API](https://docs.github.com/en/rest/reference/actions#workflow-runs) allowing `delete` operations by using the `/repos/{owner}/{repo}/actions/runs` endpoint.
 
-By default the script scans a repository to get a list of branches and deletes all workflow runs except the ones belonging to that latest commit per branch. The list of branches as well as the amount of commits to be kept can be adjusted.
+By default the script scans a repository to get a list of branches and deletes all workflow runs except the ones belonging to the latest commit per branch. The list of branches as well as the amount of commits to be kept can be adjusted.
 
 ## pre-requisite
 
