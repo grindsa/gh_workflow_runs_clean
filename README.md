@@ -7,7 +7,7 @@ It uses the [WorkFlow Runs API](https://docs.github.com/en/rest/reference/action
 
 By default the script scans a repository to get a list of branches and deletes all workflow runs except the ones belonging to the latest commit per branch. The list of branches as well as the amount of commits to be kept can be adjusted.
 
-## pre-requisite
+## Pre-requisite
 
 You need a personal access token with the following permissions:
 
