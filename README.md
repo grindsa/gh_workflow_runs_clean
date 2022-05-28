@@ -3,7 +3,7 @@
 
 `gh_workflow_runs_delete.py` is a small python script helping you to "mass delete" Github Actions workflow runs as such a feature isn't available in the Web base Actions UI.
 
-It uses the [WorkFlow Runs API](https://docs.github.com/en/rest/reference/actions#workflow-runs) allowing `delete` operations by using the `/repos/{owner}/{repo}/actions/runs` endpoint.
+It uses the [WorkFlow Runs API](https://docs.github.com/en/rest/actions/workflow-runs) allowing `delete` operations by using the `/repos/{owner}/{repo}/actions/runs` endpoint.
 
 By default the script scans a repository to get a list of branches and deletes all workflow runs except the ones belonging to the latest commit per branch. The list of branches as well as the amount of commits to be kept can be adjusted.
 
