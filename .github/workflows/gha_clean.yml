@@ -30,3 +30,6 @@ jobs:
     - name: check dkb-robo
       run: |
         python3 ./gh_workflow_runs_delete.py -d  -r grindsa/dkb-robo -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }}  -c 2
+    - name: check ncm-issuer
+      run: |
+        python3 ./gh_workflow_runs_delete.py -d  -r grindsa/ncm-issuer -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }}  -c 2
