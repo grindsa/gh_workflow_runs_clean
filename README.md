@@ -1,7 +1,7 @@
 <!-- markdownlint-disable  MD013 -->
 # gh_workflow_runs_delete.py
 
-`gh_workflow_runs_delete.py` is a small python script helping you to "mass delete" Github Actions workflow runs as such a feature isn't available in the webbased Actions UI.
+`gh_workflow_runs_delete.py` is a small python script helping you to "mass-delete" Github Actions workflow runs as such a feature isn't available in the webbased Actions UI.
 
 It uses the WorkFlow Runs API allowing `delete` operations by using the `/repos/{owner}/{repo}/actions/runs` endpoint.
 
