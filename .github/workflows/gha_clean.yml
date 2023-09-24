@@ -39,6 +39,12 @@ jobs:
     - name: check grindsa/my_playground
       run: |
         python3 ./gh_workflow_runs_delete.py -d  -r grindsa/my_playground -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }} -c 1
+    - name: check grindsa/delstat_scraper
+      run: |
+        python3 ./gh_workflow_runs_delete.py -d  -r grindsa/delstat_scraper -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }} -c 1
+    - name: check grindsa/delapp_helper
+      run: |
+        python3 ./gh_workflow_runs_delete.py -d  -r grindsa/delapp_helper -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }} -c 1
 
     - name: check nokia/ncm-issuer
       run: |
