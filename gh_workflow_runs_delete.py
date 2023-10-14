@@ -170,6 +170,10 @@ if __name__ == '__main__':
     # group actions per branch
     ACTION_DIC = wfruns_group(DEBUG, ACTION_LIST)
 
+    for branch, bdata in ACTION_DIC.items():
+        for commit, cdata in bdata.items():
+            print_debug(DEBUG, f'{branch} {commit} {len(cdata["id_list"])}')
+
     # select ids to be deleted
     ID_LIST = idlist_filter(DEBUG, ACTION_DIC, BRANCH_LIST, COMMIT_NUMBER)
 
