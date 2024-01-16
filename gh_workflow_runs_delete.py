@@ -19,6 +19,7 @@ def arg_parse():
     parser.add_argument('-t', '--token', help='token', default=None)
     parser.add_argument('-c', '--commits', help='number of commits to keep', default=1)
     parser.add_argument('--branchlist', help='list of branches', default=False)
+    parser.add_argument('-a', '--delete-all', help='delete all logs', action="store_true", default=False)
     args = parser.parse_args()
 
     debug = args.debug
@@ -28,6 +29,7 @@ def arg_parse():
     commit_num = int(args.commits)
     reponame = args.reponame
     auth = None
+    delete_all = args.delete_all
     if not reponame:
         print('reponame (-r) is missing')
         sys.exit(0)
@@ -37,7 +39,7 @@ def arg_parse():
         print('authentication incomplete (either user or token are missing)')
         sys.exit(0)
 
-    return (debug, auth, reponame, branchlist, commit_num)
+    return (debug, auth, reponame, branchlist, commit_num, delete_all)
 
 
 def branchlist_get(debug, auth, reponame):
@@ -124,13 +126,13 @@ def print_debug(debug, text):
         print(f'{datetime.now()}: {text}')
 
 
-def idlist_filter(debug, action_dic, branch_list, commit_number):
+def idlist_filter(debug, action_dic, branch_list, commit_number, delete_all):
     """ select ids to be deleted """
     print_debug(debug, f'idlist_filter({commit_number})')
     id_list = []
     for branch in action_dic:
         delete = False
-        if branch not in branch_list:
+        if branch not in branch_list or delete_all:
             delete = True
 
         for idx, timestamp in enumerate(sorted(action_dic[branch], reverse=True)):
@@ -155,12 +157,11 @@ def idlist_delete(debug, auth, reponame, id_list):
 
 if __name__ == '__main__':
 
-    (DEBUG, AUTH, REPONAME, BRANCHLIST, COMMIT_NUMBER) = arg_parse()
+    (DEBUG, AUTH, REPONAME, BRANCHLIST, COMMIT_NUMBER, DELETE_ALL) = arg_parse()
 
     if not BRANCHLIST:
         BRANCH_LIST = branchlist_get(DEBUG, AUTH, REPONAME)
 
-    # print(BRANCH_LIST)
     if BRANCH_LIST:
         ACTION_LIST = wfruns_get(DEBUG, AUTH, REPONAME)
 
@@ -175,6 +176,6 @@ if __name__ == '__main__':
             print_debug(DEBUG, f'{branch} {commit} {len(cdata["id_list"])}')
 
     # select ids to be deleted
-    ID_LIST = idlist_filter(DEBUG, ACTION_DIC, BRANCH_LIST, COMMIT_NUMBER)
+    ID_LIST = idlist_filter(DEBUG, ACTION_DIC, BRANCH_LIST, COMMIT_NUMBER, DELETE_ALL)
 
     idlist_delete(DEBUG, AUTH, REPONAME, ID_LIST)
