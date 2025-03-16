@@ -27,13 +27,14 @@ You need a personal access token with the following permissions:
 ## Usage
 
 ```bash
-grindsa@lola:~$ python3 ./gh_workflow_runs_delete.py -r {owner}/{repo} -t {TOKEN} -u {github_user}
+python3 ./gh_workflow_runs_delete.py -r {owner}/{repo} -t {TOKEN} -u {github_user}
 ```
 
 Below the list of command line options
 
 ```bash
-grindsa@lola:~$ py gh_actions_clean> py .\gh_workflow_runs_delete.py -h
+py gh_actions_clean> py .\gh_workflow_runs_delete.py -h
+
 usage: gh_workflow_runs_delete.py [-h] [-d] [-r REPONAME] [-u USERNAME] [-t TOKEN] [-c COMMITS]
                                   [--branchlist BRANCHLIST]
 
@@ -52,7 +53,6 @@ optional arguments:
                         number of commits to keep
   --branchlist BRANCHLIST
                         list of branches
-grindsa@lola:~$
 ```
 
 ## Usage as part of a Github workflow
@@ -82,16 +82,16 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: check self
       run: |
-        python3 ./gh_workflow_runs_delete.py -d  -r grindsa/github_actions_clean -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }}  -c 2
+        python3 ./gh_workflow_runs_delete.py -d  -r grindsa/github_actions_clean -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }}  -c 1
     - name: check a2c
       run: |
-        python3 ./gh_workflow_runs_delete.py -d  -r grindsa/acme2certifier -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }}  -c 2
+        python3 ./gh_workflow_runs_delete.py -d  -r grindsa/acme2certifier -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }}  -c 1
     - name: check est_proxy
       run: |
-        python3 ./gh_workflow_runs_delete.py -d  -r grindsa/est_proxy -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }}  -c 2
+        python3 ./gh_workflow_runs_delete.py -d  -r grindsa/est_proxy -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }}  -c 1
     - name: check dkb-robo
       run: |
-        python3 ./gh_workflow_runs_delete.py -d  -r grindsa/dkb-robo -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }}  -c 2
+        python3 ./gh_workflow_runs_delete.py -d  -r grindsa/dkb-robo -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }}  -c 1
 
 ```
 
