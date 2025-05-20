@@ -23,7 +23,7 @@ jobs:
         python3 ./gh_workflow_runs_delete.py -d  -r grindsa/github_actions_clean -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }} -c 1
     - name: check a2c
       run: |
-        python3 ./gh_workflow_runs_delete.py -d  -r grindsa/acme2certifier -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }}  -c 2
+        python3 ./gh_workflow_runs_delete.py -d  -r grindsa/acme2certifier -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }}  -c 1
     - name: check est_proxy
       run: |
         python3 ./gh_workflow_runs_delete.py -d  -r grindsa/est_proxy -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }}  -c 1
@@ -32,7 +32,7 @@ jobs:
         python3 ./gh_workflow_runs_delete.py -d  -r grindsa/dkb-robo -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }}  -c 1
     - name: check grindsa/ncm-issuer
       run: |
-        python3 ./gh_workflow_runs_delete.py -d  -r grindsa/ncm-issuer -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }}  -c 2
+        python3 ./gh_workflow_runs_delete.py -d  -r grindsa/ncm-issuer -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }}  -c 1
     - name: check grindsa/sbom
       run: |
         python3 ./gh_workflow_runs_delete.py -d  -r grindsa/sbom -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }}  -c 1
@@ -49,7 +49,7 @@ jobs:
 
     - name: check grindsa/docker-pen
       run: |
-        python3 ./gh_workflow_runs_delete.py -d  -r grindsa/docker-pen -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }} -c 2
+        python3 ./gh_workflow_runs_delete.py -d  -r grindsa/docker-pen -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }} -c 1
 
     - name: check nokia/ncm-issuer
       run: |
