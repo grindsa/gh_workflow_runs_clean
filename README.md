@@ -92,7 +92,9 @@ jobs:
     - name: check dkb-robo
       run: |
         python3 ./gh_workflow_runs_delete.py -d  -r grindsa/dkb-robo -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }}  -c 1
-
+    - name: check dkb-robo
+      run: |
+        python3 ./gh_workflow_runs_delete.py -d  -r grindsa/docker-pen -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }}  -c 1
 ```
 
 ## Contributing
