@@ -60,8 +60,8 @@ optional arguments:
 I created an [example workflow](https://github.com/grindsa/gh_workflow_runs_clean/blob/main/.github/workflows/gha_clean.yml) which is cleaning up my repositories once a week.
 
 ```YAML
-# workflow to clean github workflow runs for my repositories
 
+# workflow to clean github workflow runs for my repositories
 name: Github WF Runs Clean
 on:
   push:
