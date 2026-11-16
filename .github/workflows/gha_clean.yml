@@ -33,9 +33,16 @@ jobs:
     - name: check grindsa/sbom
       run: |
         python3 ./gh_workflow_runs_delete.py -d  -r grindsa/sbom -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }}  -c 1
-    - name: check grindsa/my_playground
+    - name: check grindsa/yasl
       run: |
-        python3 ./gh_workflow_runs_delete.py -d  -r grindsa/my_playground -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }} -c 1
+        python3 ./gh_workflow_runs_delete.py -d  -r grindsa/yasl -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }} -c 1
+    - name: check grindsa/gira-ble-api
+      run: |
+        python3 ./gh_workflow_runs_delete.py -d  -r grindsa/gira-ble-api -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }} -c 1
+    - name: check rindsa/rrs37b-dashboard
+      run: |
+        python3 ./gh_workflow_runs_delete.py -d  -r grindsa/rrs37b-dashboard -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }} -c 1
+
     - name: check grindsa/docker-pen
       run: |
         python3 ./gh_workflow_runs_delete.py -d  -r grindsa/docker-pen -t ${{ secrets.GH_TOKEN }} -u ${{ secrets.GH_USER }} -c 1
